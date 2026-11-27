@@ -1,4 +1,5 @@
 Sweety – Blood Glucose Tracker
+
 A full-stack assignment implementation using React, Node.js, Express and PostgreSQL.
 Features
 Registration and login with bcrypt password hashing and JWT authentication.
