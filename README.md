@@ -1,4 +1,5 @@
 Sweety – Blood Glucose Tracker
+
 A full-stack assignment implementation using React, Node.js, Express and PostgreSQL.
 Features
 Registration and login with bcrypt password hashing and JWT authentication.
@@ -51,6 +52,7 @@ cd server
 npm run seed
 ```
 Demo credentials:
+
 Email: `demo@sweety.local`
 Password: `SweetyDemo123!`
 The seed script creates the demo account if absent and inserts sample readings only when it has no existing readings.
