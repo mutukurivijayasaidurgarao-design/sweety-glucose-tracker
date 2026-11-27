@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import { createReading, deleteReading, listReadings, updateReading } from '../controllers/readingController.js';
+import { requireAuth } from '../middleware/auth.js';
+import { validate } from '../middleware/validate.js';
+import { readingSchema } from '../validators/readingValidators.js';
+const router = Router();
+router.use(requireAuth);
+router.get('/', listReadings);
+router.post('/', validate(readingSchema), createReading);
+router.put('/:id', validate(readingSchema), updateReading);
+router.delete('/:id', deleteReading);
+export default router;

@@ -1,0 +1,21 @@
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import authRoutes from './routes/authRoutes.js';
+import readingRoutes from './routes/readingRoutes.js';
+import reportRoutes from './routes/reportRoutes.js';
+import { errorHandler, notFound } from './middleware/errorHandler.js';
+
+const app = express();
+app.use(helmet());
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173' }));
+app.use(express.json({ limit: '1mb' }));
+app.use('/api/auth', rateLimit({ windowMs: 15 * 60 * 1000, limit: 100 }));
+app.get('/api/health', (req, res) => res.json({ status: 'ok', service: 'sweety-api' }));
+app.use('/api/auth', authRoutes);
+app.use('/api/readings', readingRoutes);
+app.use('/api/reports', reportRoutes);
+app.use(notFound);
+app.use(errorHandler);
+export default app;
